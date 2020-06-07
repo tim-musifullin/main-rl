@@ -1,9 +1,12 @@
 <template>
   <div class="statistics__items">
-    <StaticCard />
-    <StaticCard />
-    <StaticCard />
-    <StaticCard />
+    <StaticCard
+      v-for="card in statistics"
+      :key="card.id"
+      :text="card.description"
+      :numbers="card.summary"
+      :source="card.source"
+    />
   </div>
 </template>
 
@@ -12,6 +15,14 @@ import StaticCard from '@/components/ui/StaticCard';
 export default {
   components: {
     StaticCard,
+  },
+  computed : {
+    statistics() {
+      return this.$store.getters['statistics/getStatistics'];
+    }
+  },
+  beforeMount() {
+    this.$store.dispatch('statistics/fetchStatistics');
   },
 };
 </script>

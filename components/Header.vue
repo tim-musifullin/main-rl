@@ -5,16 +5,16 @@
         Проект Благотворительного Фонда Константина Хабенского
       </h1>
       <div class="header__navigation">
-        <Menu />
+        <Links />
         <button class="header__button" type="button" @click="showPopUp">
           Рассказать историю
         </button>
       </div>
     </header>
-    <overlay v-if="popupShown" @overlayClick="showPopUp" />
-    <pop-up v-if="popupShown" @closeClick="showPopUp" :theme="'dark'">
-      <question-form />
-    </pop-up>
+    <Overlay v-if="popupShown" @overlayClick="showPopUp" />
+    <PopUp v-if="popupShown" @closeClick="showPopUp" :theme="'dark'">
+      <QuestionForm />
+    </PopUp>
   </Container>
 </template>
 
@@ -26,11 +26,11 @@ import PopUp from '@/components/PopUp';
 import QuestionForm from '@/components/QuestionForm';
 export default {
   components: {
-    Menu: Links,
+    Links,
     Container,
-    overlay: Overlay,
-    'pop-up': PopUp,
-    'question-form': QuestionForm,
+    Overlay,
+    PopUp,
+    QuestionForm,
   },
   computed: {
     popupShown() {

@@ -22,6 +22,7 @@ export default {
 <style scoped>
 .button {
   border: none;
+  outline: none;
   max-width: 226px;
   width: 100%;
   height: 52px;

@@ -4,7 +4,7 @@
       <div class="cover__inner">
         <span></span>
         <Hashtag class="cover__title">#РАКЛЕЧИТСЯ</Hashtag>
-        <a href="#video-stories" class="cover__button"></a>
+        <a class="cover__button"></a>
       </div>
     </Container>
   </section>

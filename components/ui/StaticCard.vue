@@ -1,25 +1,34 @@
 <template>
   <div class="statistics__item">
     <p class="statistics__text">
-      Каждый 3-й в стране уверен, что рак неизлечим. А это примерно 48 918 000
-      человек.
+      {{ text }}
     </p>
-    <div class="progress-bar">
-      <div class="progress-bar__fill"></div>
+    <div class="statistics__inner">
+      <div class="progress-bar">
+        <div class="progress-bar__fill" style="width:30%"></div>
+        <div class="progress-bar__fill"></div>
+      </div>
+      <p class="statistics__numbers">{{ numbers }}</p>
+      <p class="statistics__source">{{ source }}</p>
     </div>
-    <p class="statistics__numbers">1 из 3</p>
-    <p class="statistics__source">Левада-Центр 2018</p>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    text: String,
+    numbers: String,
+    source: String,
+  },
+};
 </script>
 
 <style scoped>
 .statistics__item {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   width: 300px;
   height: 300px;
   border: 1px solid #efefef;
@@ -31,6 +40,7 @@ export default {};
   line-height: 16px;
   font-size: 12px;
   margin: 20px 20px 0px 20px;
+  justify-content: flex-start;
 }
 
 .progress-bar {
@@ -43,12 +53,9 @@ export default {};
 }
 
 .progress-bar__fill {
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
+  width: 3%;
+  height: 50%;
   background: #613a93;
-  width: 30%;
 }
 
 .statistics__numbers {

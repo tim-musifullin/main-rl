@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent="submitQuestionForm" class="question-form">
     <nxt-input
-      :placeholder="'Your Name'"
+      :placeholder="'Ваше имя'"
       :labelText="'Ваше имя'"
       :type="'text'"
       :name="'name'"
@@ -9,7 +9,7 @@
       v-model="email"
     />
     <nxt-input
-      :placeholder="'hello@jhkjhgk.ru'"
+      :placeholder="'Ваш e-mail'"
       :labelText="'Email'"
       :type="'email'"
       :name="'email'"

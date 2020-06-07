@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <a :href="link" class="card">
     <img
       src="~/assets/images/card__photo-default.jpg"
       alt="Photo"
@@ -7,7 +7,7 @@
     />
     <h3 class="card__title">{{ name }}</h3>
     <p class="card__description">{{ quote }}</p>
-  </div>
+  </a>
 </template>
 
 <script>
@@ -15,6 +15,7 @@ export default {
   props: {
     name: String,
     quote: String,
+    link: String,
   },
 };
 </script>

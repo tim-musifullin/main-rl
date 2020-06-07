@@ -1,11 +1,13 @@
 <template>
-  <label class="input">
+  <label class="section">
     {{ labelText }}
     <input
+      :class="['input', className]"
       :type="type"
       :placeholder="placeholder"
       :name="name"
       :required="required"
+      v-model="content"
       @input="$emit('input', $event.target.value)"
     />
   </label>
@@ -13,20 +15,47 @@
 
 <script>
 export default {
-  props: ['labelText', 'type', 'placeholder', 'name', 'required'],
+  props: {
+    labelText: String,
+    placeholder: String,
+    name: String,
+    required: String,
+    type: {
+      type: String,
+      default: 'text',
+      validator: value => 'text|number|email|password|search|url|tel'.split('|').indexOf('value') > -1
+    },
+    className: String
+  },
+  data() {
+    return {
+      content: this.value
+    }
+  }
 };
 </script>
 
 <style scoped>
-.input input {
+.section {
+  width: 100%;
+}
+
+.input {
   display: block;
   width: 100%;
-  margin-top: 10px;
-  border: 1px solid black;
-  height: 40px;
-  padding: 5px;
-  font-size: 14px;
-  box-sizing: border-box;
-  font-family: inherit;
+  height: 52px;
+  border: 1px solid #e8e8e8;
+  outline: none;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.input:focus {
+  outline: 2px solid #613A93;
 }
 </style>
