@@ -20,11 +20,7 @@ export default {
     placeholder: String,
     name: String,
     required: String,
-    type: {
-      type: String,
-      default: 'text',
-      validator: value => 'text|number|email|password|search|url|tel'.split('|').indexOf('value') > -1
-    },
+    type: String,
     className: String
   },
   data() {
@@ -39,7 +35,6 @@ export default {
 .section {
   width: 100%;
 }
-
 .input {
   display: block;
   width: 100%;
@@ -54,7 +49,6 @@ export default {
   text-align: left;
   padding-left: 10px;
 }
-
 .input:focus {
   outline: 2px solid #613A93;
 }

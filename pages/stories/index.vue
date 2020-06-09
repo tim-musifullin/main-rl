@@ -3,7 +3,7 @@
     <Title class="stories__title">Истории неизлечимых привычек</Title>
     <form class="stories__search">
       <Input
-        :type="text"
+        :type="'text'"
         :name="'search'"
         :className="'stories__input'" />
       <Button
@@ -17,8 +17,10 @@
       <Card
         v-for="card in stories"
         :key="card.id"
-        :name="card.name"
-        :quote="card.quote"
+        :name="card.author"
+        :quote="card.title"
+        :link="`/stories/${card.id}`"
+        :photo="`background-image:url(https://strapi.kruzhok.io${card.ImageUrl[0].url})`"
       />
     </div>
     <Pagination
@@ -41,7 +43,7 @@ export default {
   data() {
     return {
       storiesName: '',
-      itemsPerPage: 8,
+      itemsPerPage: 16,
       startIndex: 0
     }
   },
@@ -62,7 +64,10 @@ export default {
     changeStartIndex (index) {
       this.startIndex = (index - 1) * this.itemsPerPage;
     }
-  }
+  },
+  beforeMount() {
+    this.$store.dispatch('stories/fetchStories');
+  },
 };
 </script>
 
