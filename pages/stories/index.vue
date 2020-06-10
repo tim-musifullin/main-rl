@@ -69,9 +69,10 @@ export default {
       this.$router.push(`/stories/${id}`);
     }
   },
-  beforeMount() {
-    this.$store.dispatch('stories/fetchStories');
-  },
+  async fetch({ store }) {
+    await store.dispatch('stories/fetchStories');
+  }
+
 };
 </script>
 

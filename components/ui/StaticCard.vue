@@ -4,10 +4,21 @@
       {{ text }}
     </p>
     <div class="statistics__inner">
-      <div class="progress-bar">
-        <div class="progress-bar__fill" style="width:30%"></div>
-        <div class="progress-bar__fill"></div>
+      <div class="progress-bar" v-if="serial < 3" style="background: #f4f4f4;">
+        <div class="progress-bar__fill" :style="style"></div>
+        <div class="progress-bar__fill" :style="style"></div>
       </div>
+
+      <div class="progress-bar" v-if="serial === 3">
+        <div class="progress-bar__fill" style="width: 61%; height: 50%; background: #f4f4f4;"></div>
+        <div class="progress-bar__fill" style="width: 80%; height: 50%;"></div>
+      </div>
+
+      <div class="progress-bar" v-if="serial === 4">
+        <div class="progress-bar__fill" style="width: 73%; height: 50%; background: #f4f4f4;"></div>
+        <div class="progress-bar__fill" style="width: 54%; height: 50%;"></div>
+      </div>
+
       <p class="statistics__numbers">{{ numbers }}</p>
       <p class="statistics__source">{{ source }}</p>
     </div>
@@ -20,7 +31,15 @@ export default {
     text: String,
     numbers: String,
     source: String,
+    value: Number,
+    maxValue: Number,
+    serial: Number
   },
+  computed: {
+    style() {
+      return `width: ${this.value / this.maxValue * 100}%; height: 50%; `
+    }
+  }
 };
 </script>
 
@@ -46,15 +65,11 @@ export default {
 .progress-bar {
   max-width: 260px;
   height: 40px;
-  width: 260px;
-  background: #f4f4f4;
   position: relative;
   margin: 70px 20px 0px 20px;
 }
 
 .progress-bar__fill {
-  width: 3%;
-  height: 50%;
   background: #613a93;
 }
 

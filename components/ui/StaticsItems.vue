@@ -6,6 +6,9 @@
       :text="card.description"
       :numbers="card.summary"
       :source="card.source"
+      :value="card.currentValue"
+      :maxValue="card.maxValue"
+      :serial="card.id"
     />
   </div>
 </template>
