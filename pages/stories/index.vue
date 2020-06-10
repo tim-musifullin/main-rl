@@ -20,7 +20,8 @@
         :name="card.author"
         :quote="card.title"
         :link="`/stories/${card.id}`"
-        :photo="`background-image:url(https://strapi.kruzhok.io${card.ImageUrl[0].url})`"
+        :photo="`background-image:url('https://strapi.kruzhok.io${card.ImageUrl[0].url}')`"
+        @cardClick="goToFull(card.id)"
       />
     </div>
     <Pagination
@@ -63,6 +64,9 @@ export default {
   methods: {
     changeStartIndex (index) {
       this.startIndex = (index - 1) * this.itemsPerPage;
+    },
+    goToFull(id) {
+      this.$router.push(`/stories/${id}`);
     }
   },
   beforeMount() {

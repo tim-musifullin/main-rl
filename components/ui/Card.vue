@@ -1,5 +1,5 @@
 <template>
-  <a :href="link" class="card">
+  <a :href="link" class="card" @click="$emit('cardClick')">
     <div class="card__image" :style='photo'></div>
     <h3 class="card__title">{{ name }}</h3>
     <p class="card__description">{{ quote }}</p>
@@ -24,7 +24,7 @@ export default {
   text-decoration: none;
 }
 
-/* .card__image {
+.card__image {
   width: 100%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -33,13 +33,13 @@ export default {
   content: '';
   padding-top: 100%;
   float: left;
-} */
-
+}
+/*
 .card__image {
   width: 300px;
   height: 300px;
   background-size: cover;
-}
+} */
 
 .card__title {
   font-family: Inter, Arial, sans-serif;

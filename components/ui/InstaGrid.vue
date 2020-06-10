@@ -1,33 +1,46 @@
 <template>
   <div class="insta-grid">
-    <div class="insta-grid__item"></div>
-    <div class="insta-grid__item"></div>
-    <div class="insta-grid__item"></div>
-    <div class="insta-grid__item"></div>
-    <div class="insta-grid__item"></div>
-    <div class="insta-grid__item"></div>
-    <div class="insta-grid__item"></div>
-    <div class="insta-grid__item"></div>
+    <InstaCard
+      v-for="photo in instagram"
+      :key="instagram.indexOf(photo)"
+      :link="photo.url"
+      :photo="`background-image:url('${photo.display_url}')`"
+    />
   </div>
 </template>
 
 <script>
-export default {};
+import InstaCard from '@/components/ui/InstaCard';
+export default {
+  components: {
+    InstaCard
+  },
+  data() {
+    return {
+      storiesName: '',
+      itemsPerPage: 8,
+      startIndex: 0
+    }
+  },
+  computed: {
+    instagram () {
+        const { instagram } = this.$store.state
+        return instagram.photos.filter((item, idx) => idx >= this.startIndex && idx <= (this.startIndex + this.itemsPerPage - 1))
+      }
+  },
+  beforeMount() {
+    this.$store.dispatch('instagram/fetchPhotos');
+  },
+};
 </script>
 
 <style scoped>
 .insta-grid {
   margin: 0;
   display: grid;
-  grid-gap: 30px;
-  grid-template: repeat(2, 1fr) / repeat(4, 1fr);
-  justify-content: center;
-}
-
-.insta-grid__item {
-  width: 195px;
-  height: 195px;
-  object-fit: cover;
-  background-color: #ededed;
+  grid-template-columns: repeat(4, minmax(140px, 195px));
+  grid-template-rows: repeat(2, minmax(140px, 195px));
+  column-gap: 40px;
+  row-gap: 40px;
 }
 </style>

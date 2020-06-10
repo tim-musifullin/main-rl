@@ -15,7 +15,7 @@
           пропустили вашу историю.
         </Description>
       </div>
-      <insta-grid />
+      <InstaGrid />
     </div>
   </Container>
 </template>
@@ -29,7 +29,7 @@ export default {
   components: {
     Title,
     Description,
-    'insta-grid': InstaGrid,
+    InstaGrid,
     Container,
   },
 };
@@ -43,9 +43,9 @@ export default {
 }
 
 .insta__about {
-  max-width: 413px;
-  width: 413px;
-  margin: 0 37px 0 0;
+  max-width: 340px;
+  width: 100%;
+  margin: 0 110px 0 0;
 }
 
 .link {

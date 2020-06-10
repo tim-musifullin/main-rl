@@ -47,6 +47,7 @@ export const state = () => ({
     },
   ],
   storiesPage: [],
+  currentStories: {},
 });
 
 export const mutations = {
@@ -61,6 +62,9 @@ export const getters = {
   },
   getStoriesForPage(state) {
     return state.storiesPage;
+  },
+  getCurrentStories(state) {
+    return state.currentStories;
   }
 };
 
@@ -72,5 +76,16 @@ export const actions = {
         value: response.data,
       })
     })
+  },
+
+  fetchStoriesWithId(state, payload) {
+    return axios
+      .get(`https://strapi.kruzhok.io/stories/${payload.id}`)
+      .then(response => {
+        return state.commit('setState', {
+          name: 'currentStories',
+          value: response.data
+        })
+      })
   }
 }
