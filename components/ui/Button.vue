@@ -1,7 +1,9 @@
 <template>
   <button
-    :class="['button', `button_theme_${theme}`]"
-    @click="btnClick"
+    :class="['button', `button_theme_${theme}`, { button_disabled: disabled }]"
+    @click="$emit('btnClick')"
+    :disabled="disabled"
+    :type="buttonType"
   >
     <slot></slot>
   </button>

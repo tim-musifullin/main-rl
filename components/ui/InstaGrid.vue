@@ -28,9 +28,6 @@ export default {
         return instagram.photos.filter((item, idx) => idx >= this.startIndex && idx <= (this.startIndex + this.itemsPerPage - 1))
       }
   },
-  beforeMount() {
-    this.$store.dispatch('instagram/fetchPhotos');
-  },
 };
 </script>
 

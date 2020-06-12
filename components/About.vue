@@ -2,31 +2,30 @@
   <section class="about">
     <Container>
       <h2 class="about__header">
-        <Hashtag class="about__hashtag">#РАКЛЕЧИТСЯ</Hashtag>
+        <Hashtag class="about__hashtag">{{getBlock.hashtag}}</Hashtag>
       </h2>
-      <Title class="about__title">О проекте</Title>
+      <Title class="about__title">
+        {{getBlock.title}}
+      </Title>
       <div class="about__container">
         <Description class="about__description_left">
-          Этот проект был создан благотворительным фондом Константина
-          Хабенского.
+          <div class="about__paragraph" v-html="getBlock.text">
+          </div>
+          <div class="about__switch">
+            <button
+              v-for="item in getBlock.extraTexts"
+              currentTab="item"
+              v-bind:key="item.id"
+              v-bind:class="[
+                'about__click',
+                { 'about__click_active': currentTab.id === item.id },]"
+              v-on:click="currentTab = item">
+              {{ item.title }}
+            </button>
+            </div>
         </Description>
-        <div class="about__switch">
-          <span class="about__click about__click_active">Рак Лечится</span>
-          <span class="about__click">Фонд Хабенского</span>
-        </div>
         <Description class="about__description_right">
-          <span class="about__descriptino_first">
-            Есть вещи, которые не лечатся. Особенности характера, страстные
-            увлечения, привычки, ставшие частью нашего «я», фобии, которые мы
-            приобрели в детстве. Список можно продолжать до бесконечности, но
-            одна болезнь в него точно не войдет. Эта болезнь — рак. Рак лечится,
-            и лучшее доказательство — люди с их неизлечимыми особенностями,
-            которые сумели победить рак.
-          </span>
-          Рак лечится — проект Благотворительного Фонда Константина Хабенского и
-          Leo Burnett Moscow. С его помощью мы надеемся изменить отношение людей
-          к раку и заставить каждого поверить: онкологическое заболевание — это
-          не приговор.
+          <div class="about__info" v-html="currentTab.text"></div>
         </Description>
       </div>
     </Container>
@@ -38,12 +37,26 @@ import Hashtag from '@/components/ui/Hashtag';
 import Title from '@/components/ui/Title';
 import Description from '@/components/ui/Description';
 import Container from '@/components/Container';
+import Button from '@/components/ui/Button';
 export default {
   components: {
     Hashtag,
     Title,
     Description,
     Container,
+    Button
+  },
+  data() {
+    return {
+      currentTab: this.$store.state.blocks.blocks.find(
+        el => el.block === 'about'
+      ).extraTexts[0],
+    };
+  },
+  computed: {
+    getBlock() {
+      return this.$store.state.blocks.blocks.find(el => el.block === 'about');
+    },
   },
 };
 </script>
@@ -66,48 +79,66 @@ export default {
   color: #fff;
 }
 
+.about__paragraph {
+  max-width: 340px;
+}
+
 .about__container {
   display: flex;
   padding-top: 32px;
 }
 
 .about__description_left {
-  max-width: 340px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
   color: #dedede;
 }
 
 .about__description_right {
   max-width: 640px;
+  width: 100%;
   margin-left: 40px;
   display: flex;
   flex-direction: column;
   color: #dedede;
 }
 
-.about__descriptino_first {
-  padding-bottom: 5%;
+.about__info {
+  height: 242px;
 }
 
 .about__switch {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  margin-left: 140px;
 }
 
 .about__click {
   font-family: Inter;
   font-style: normal;
-  font-weight: normal;
+  font-weight: 500;
   font-size: 18px;
-  line-height: 122%;
-  padding-bottom: 10px;
-  color: #c9c9c9;
+  line-height: 22px;
   text-align: right;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  text-align: left;
+  background: #613a93;
+  color: #C9C9C9;
+}
+
+.about__click:first-child {
+  padding-bottom: 10px;
+}
+
+.about__click:hover {
+  font-weight: 500;
+  color: #fff;
 }
 
 .about__click_active {
-  color: #ffffff;
+  color: #fff;
   font-weight: 500;
 }
 </style>

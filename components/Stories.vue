@@ -45,9 +45,6 @@ export default {
       return this.$store.getters['stories/getStoriesForPage'].filter((item, idx) => idx >= this.startIndex && idx <= (this.startIndex + this.itemsPerPage - 1));
     },
   },
-  beforeMount() {
-    this.$store.dispatch('stories/fetchStories');
-  },
 };
 </script>
 
