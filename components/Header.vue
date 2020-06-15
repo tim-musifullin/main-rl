@@ -13,7 +13,7 @@
     </header>
     <Overlay v-if="popupShown" @overlayClick="showPopUp" />
     <PopUp v-if="popupShown" @closeClick="showPopUp" :theme="'dark'">
-      <QuestionForm />
+      <Quiz />
     </PopUp>
   </Container>
 </template>
@@ -23,14 +23,14 @@ import Links from '@/components/ui/Links';
 import Container from '@/components/Container';
 import Overlay from '@/components/ui/Overlay';
 import PopUp from '@/components/PopUp';
-import QuestionForm from '@/components/QuestionForm';
+import Quiz from '@/components/ui/Quiz';
 export default {
   components: {
     Links,
     Container,
     Overlay,
     PopUp,
-    QuestionForm,
+    Quiz,
   },
   computed: {
     popupShown() {

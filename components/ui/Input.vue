@@ -1,33 +1,44 @@
 <template>
-  <label class="section">
-    {{ labelText }}
     <input
-      :class="['input', className]"
-      :type="type"
-      :placeholder="placeholder"
-      :name="name"
-      :required="required"
+      :class="['input',
+        className, {
+        'input_bottom-bordered': bottomBordered,
+        input_disabled: disabled,
+      }]"
+      :type="inputType"
+      :placeholder="inputPlaceholder"
+      @input="handleInput"
       v-model="content"
-      @input="$emit('input', $event.target.value)"
     />
-  </label>
 </template>
 
 <script>
 export default {
   props: {
-    labelText: String,
-    placeholder: String,
-    name: String,
-    required: String,
-    type: String,
-    className: String
+    className: String,
+    bottomBordered: Boolean,
+    inputType: String,
+    inputPlaceholder: String,
+    value: String,
+    disabled: Boolean,
   },
   data() {
     return {
       content: this.value
     }
-  }
+  },
+  watch: {
+    value(newVal) {
+      if (newVal !== this.content) {
+        this.content = newVal;
+      }
+    },
+  },
+  methods: {
+    handleInput() {
+      this.$emit('input', this.content);
+    },
+  },
 };
 </script>
 

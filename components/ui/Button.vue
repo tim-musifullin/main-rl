@@ -11,13 +11,11 @@
 
 <script>
 export default {
-  props: ['theme'],
-  methods: {
-    btnClick(e) {
-      e.preventDefault()
-      this.$emit('click')
-    }
-  }
+  props: {
+    theme: String,
+    buttonType: String,
+    disabled: Boolean,
+  },
 };
 </script>
 
