@@ -7,7 +7,7 @@
 
       <div class="history__container">
 
-        <Description class="history__description_left">
+        <Description class="history__description history__description_left">
           <div class="history_paragraph" v-html="getBlock.text"></div>
 
           <div class="history__switch">
@@ -26,7 +26,7 @@
           </div>
         </Description>
 
-        <Description class="history__description_right">
+        <Description class="history__description history__description_right">
         <div class="history__info" v-html="currentTab.text"></div>
         <VioletButton class="history__button">
           {{ currentTab.id == 1 ? 'Заполнить форму' : 'Отправить' }}
@@ -84,18 +84,17 @@ export default {
 .history_paragraph {
   max-width: 340px;
 }
-
-.history__description_left {
+.history__description {
   width: 100%;
   display: flex;
+}
+
+.history__description_left {
   justify-content: space-between;
 }
 
 .history__description_right {
-  max-width: 640px;
-  width: 100%;
   margin-left: 40px;
-  display: flex;
   flex-direction: column;
 }
 

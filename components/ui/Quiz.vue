@@ -12,9 +12,7 @@
         }}
       </h3>
       <p class="question-form__question">
-        <span class="question-form__question">{{
-          !isLastForm ? currentQuestion.question : ''
-        }}</span>
+        {{!isLastForm ? currentQuestion.question : '' }}
         <span v-if="!isLastForm" class="question-form__question-detail">{{
           currentQuestion.subQuestion || ''
         }}</span>
@@ -24,35 +22,33 @@
       v-if="!isLastForm"
       placeholder="Напишите тут"
       :bottomBordered="true"
-      :className="'question-form__input'"
+      className="question-form__input"
       v-model="answer"
     />
     <div class="question-form__buttons">
       <Button
         v-if="!isLastForm"
         :disabled="this.$store.state.quiz.currentQuestion === 0"
-        :class="'button_theme_white'"
-        :buttonType="'button'"
+        theme="white"
+        buttonType="button"
         @btnClick="prevQuestion"
-      >
-        {{ 'Назад' }}
+      >Назад
       </Button>
       <Button
         v-if="!isLastForm"
-        :buttonType="'button'"
+        buttonType="button"
         :disabled="answer === ''"
-        :class="'button_theme_purple'"
+        theme="purple"
         @btnClick="nextQuestion"
       >
         {{ isLastQuestion ? 'Далее' : 'Отправить' }}
       </Button>
       <Button
         v-if="isLastForm"
-        :class="'button_theme_purple'"
-        :buttonType="'button'"
+        theme="purple"
+        buttonType="button"
         @btnClick="nextQuestionClose"
-      >
-        {{ 'Закрыть' }}
+      >Закрыть
       </Button>
       <PolicyLink :class="[{ 'question-form_none': isLastQuestion == true }]" />
     </div>

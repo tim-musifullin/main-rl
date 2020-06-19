@@ -18,7 +18,7 @@ export const getters = {
 
 export const actions = {
   fetchPhotos(state) {
-    return axios.get('https://www.instagram.com/raklechitsa/?__a=1').then(response => {
+    return axios.get(`${process.env.INSTA_URL}`).then(response => {
       const finallyData = getPosts(response.data)
       return state.commit('setState', {
         name: 'photos',

@@ -1,13 +1,13 @@
 <template>
   <Container>
-    <Title class="stories__title">Истории неизлечимых привычек</Title>
+    <Title class="title">Истории неизлечимых привычек</Title>
     <form class="stories__search">
       <Input
-        :type="'text'"
-        :name="'search'"
-        :className="'stories__input'" />
+        type="text"
+        name="search"
+        className="stories__input" />
       <Button
-        :theme="'purple'"
+        theme="purple"
         class="stories__button">
         Искать
       </Button>
@@ -20,7 +20,7 @@
         :name="card.author"
         :quote="card.title"
         :link="`/stories/${card.id}`"
-        :photo="`background-image:url('https://strapi.kruzhok.io${card.ImageUrl[0].url}')`"
+        :photo="`background-image:url('${BASE_URL}${card.ImageUrl[0].url}')`"
         @cardClick="goToFull(card.id)"
       />
     </div>
@@ -45,7 +45,8 @@ export default {
     return {
       storiesName: '',
       itemsPerPage: 16,
-      startIndex: 0
+      startIndex: 0,
+      BASE_URL: process.env.BASE_URL,
     }
   },
   components: {
@@ -77,7 +78,7 @@ export default {
 </script>
 
 <style scoped>
-.stories__title {
+.title {
   margin: 100px 0 60px;
 }
 

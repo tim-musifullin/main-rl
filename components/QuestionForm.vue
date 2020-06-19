@@ -1,27 +1,27 @@
 <template>
   <form @submit.prevent="submitQuestionForm" class="question-form">
     <nxt-input
-      :placeholder="'Ваше имя'"
-      :labelText="'Ваше имя'"
-      :type="'text'"
-      :name="'name'"
-      :required="'required'"
+      placeholder="Ваше имя"
+      labelText="Ваше имя"
+      type="text"
+      name="name"
+      required="required"
       v-model="email"
     />
     <nxt-input
-      :placeholder="'Ваш e-mail'"
-      :labelText="'Email'"
-      :type="'email'"
-      :name="'email'"
-      :required="'required'"
+      placeholder="Ваш e-mail"
+      labelText="Email"
+      type="email"
+      name="email"
+      required="required"
       v-model="email"
     />
     <nxt-textarea
       class="question-form__textarea"
-      :placeholder="'Ваше сообщение'"
-      :labelText="'Ваше сообщение'"
-      :name="'message'"
-      :required="'required'"
+      placeholder="Ваше сообщение"
+      labelText="Ваше сообщение"
+      name="message"
+      required="required"
       v-model="message"
     />
     <nxt-button class="question-form__button" type="submit" :theme="'light'"

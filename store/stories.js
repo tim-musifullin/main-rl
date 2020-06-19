@@ -1,51 +1,6 @@
 import axios from 'axios';
 
 export const state = () => ({
-  stories: [
-    {
-      id: 1,
-      name: 'Владимир Тен',
-      quote:
-        'Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.',
-    },
-    {
-      id: 2,
-      name: 'Владимир Познер',
-      quote: 'Я боюсь акул — и, в отличии от рака, это не лечится.',
-    },
-    {
-      id: 3,
-      name: 'Александр Тарханов',
-      quote: 'Я не могу победить свою пунктуальность в отличии от рака.',
-    },
-    {
-      id: 1,
-      name: 'Владимир Тен',
-      quote:
-        'Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.',
-    },
-    {
-      id: 2,
-      name: 'Владимир Познер',
-      quote: 'Я боюсь акул — и, в отличии от рака, это не лечится.',
-    },
-    {
-      id: 3,
-      name: 'Александр Тарханов',
-      quote: 'Я не могу победить свою пунктуальность в отличии от рака.',
-    },
-    {
-      id: 1,
-      name: 'Владимир Тен',
-      quote:
-        'Я всегда читаю книги с конца, - и это не лечится, в отличие от рака.',
-    },
-    {
-      id: 2,
-      name: 'Владимир Познер',
-      quote: 'Я боюсь акул — и, в отличии от рака, это не лечится.',
-    },
-  ],
   storiesPage: [],
   currentStories: {},
 });
@@ -57,9 +12,6 @@ export const mutations = {
 };
 
 export const getters = {
-  getStories(state) {
-    return state.stories;
-  },
   getStoriesForPage(state) {
     return state.storiesPage;
   },
@@ -70,7 +22,7 @@ export const getters = {
 
 export const actions = {
   fetchStories(state) {
-    return axios.get('https://strapi.kruzhok.io/stories').then(response => {
+    return axios.get(`${process.env.BASE_URL}/stories`).then(response => {
       return state.commit('setState', {
         name: 'storiesPage',
         value: response.data,
@@ -80,7 +32,7 @@ export const actions = {
 
   fetchStoriesWithId(state, payload) {
     return axios
-      .get(`https://strapi.kruzhok.io/stories/${payload.id}`)
+      .get(`${process.env.BASE_URL}/stories/${payload.id}`)
       .then(response => {
         return state.commit('setState', {
           name: 'currentStories',

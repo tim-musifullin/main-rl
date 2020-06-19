@@ -1,7 +1,12 @@
 <template>
   <Container>
     <header class="header">
-      <h1 class="header__logo">
+      <nuxt-link to="/" v-if="$route.path !== '/'" class="header__logo-link">
+        <h1 class="header__logo">
+          Проект Благотворительного Фонда Константина Хабенского
+        </h1>
+      </nuxt-link>
+      <h1 class="header__logo" v-else>
         Проект Благотворительного Фонда Константина Хабенского
       </h1>
       <div class="header__navigation">
@@ -60,6 +65,9 @@ export default {
   line-height: 20px;
   color: #121212;
   padding: 18px 0;
+}
+.header__logo-link {
+  text-decoration: none;
 }
 
 .header__menu-links {

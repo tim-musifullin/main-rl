@@ -1,15 +1,15 @@
 <template>
   <Container class="story">
     <div class="story__header">
-      <div class="story__image" :style="`background-image:url('https://strapi.kruzhok.io${stories.ImageUrl[0].url}')`"></div>
+      <div class="story__image" :style="`background-image:url('${BASE_URL}${stories.ImageUrl[0].url}')`"></div>
       <div class="story__headline">
         <h2 class="story__title">
-          <span class="story__title_bold">{{stories.author}}:</span>
+          <span class="story__title story__title_bold">{{stories.author}}:</span>
           {{stories.title}}
         </h2>
         <div class="story__footer">
-          <a href="" class="story_link">Поделитесь ↗</a>
-          <p class="story_date">20 апреля 2018</p>
+          <a href="" class="story__link">Поделитесь ↗</a>
+          <p class="story__date">20 апреля 2018</p>
         </div>
       </div>
     </div>
@@ -17,7 +17,7 @@
 
     </div>
 
-    <a href="" class="story_link story__share">
+    <a href="" class="story__link story__share">
       Поделитесь этой статьей в своих социальных сетях ↗
     </a>
 
@@ -28,7 +28,7 @@
         :name="card.author"
         :quote="card.title"
         :link="`/stories/${card.id}`"
-        :photo="`background-image:url('https://strapi.kruzhok.io${card.ImageUrl[0].url}')`"
+        :photo="`background-image:url('${BASE_URL}${card.ImageUrl[0].url}')`"
       />
     </div>
     <nuxt-link to="/stories" class="story__button">
@@ -61,6 +61,7 @@ export default {
       storiesName: '',
       itemsPerPage: 4,
       startIndex: Number(this.$route.params.id),
+      BASE_URL: process.env.BASE_URL,
     }
   },
   beforeMount() {
@@ -122,7 +123,7 @@ export default {
   justify-content: space-between;
   padding-bottom: 30px;
 }
-.story_link {
+.story__link {
   font-family: Inter;
   font-style: normal;
   font-weight: normal;
