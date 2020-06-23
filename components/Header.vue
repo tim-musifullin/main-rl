@@ -16,10 +16,6 @@
         </button>
       </div>
     </header>
-    <Overlay v-if="popupShown" @overlayClick="showPopUp" />
-    <PopUp v-if="popupShown" @closeClick="showPopUp" :theme="'dark'">
-      <Quiz />
-    </PopUp>
   </Container>
 </template>
 
@@ -36,11 +32,6 @@ export default {
     Overlay,
     PopUp,
     Quiz,
-  },
-  computed: {
-    popupShown() {
-      return this.$store.getters['popup/getPopupShown'];
-    },
   },
   methods: {
     showPopUp() {

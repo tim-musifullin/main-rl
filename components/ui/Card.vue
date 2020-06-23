@@ -9,10 +9,10 @@
 <script>
 export default {
   props: {
-    name: String,
-    quote: String,
-    link: String,
-    photo: String,
+    name: { type: String, required: true},
+    quote: { type: String, required: true},
+    link: { type: String, required: true},
+    photo: { type: String, required: true},
   },
 };
 </script>

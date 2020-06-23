@@ -1,6 +1,6 @@
 <template>
   <div class="statistics__items">
-    <StaticCard
+    <StatisticsCard
       v-for="card in statistics"
       :key="card.id"
       :text="card.description"
@@ -14,10 +14,10 @@
 </template>
 
 <script>
-import StaticCard from '@/components/ui/StaticCard';
+import StatisticsCard from '@/components/ui/StatisticsCard';
 export default {
   components: {
-    StaticCard,
+    StatisticsCard,
   },
   computed : {
     statistics() {

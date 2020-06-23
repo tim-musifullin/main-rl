@@ -12,8 +12,8 @@
 <script>
 export default {
   props: {
-    theme: String,
-    buttonType: String,
+    theme: {type: String, default: 'purple'},
+    buttonType: { type: String, required: true},
     disabled: Boolean,
   },
 };

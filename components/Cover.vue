@@ -1,10 +1,15 @@
 <template>
-  <section class="cover">
+  <section class="cover" ref="cover">
     <Container>
       <div class="cover__inner">
         <span></span>
         <Hashtag class="cover__title">#РАКЛЕЧИТСЯ</Hashtag>
-        <a class="cover__button"></a>
+        <button
+        class="cover__button"
+        type="button"
+        @click="nextBlock"
+        title="Далее"
+        ></button>
       </div>
     </Container>
   </section>
@@ -18,6 +23,16 @@ export default {
     Hashtag,
     Container,
   },
+  methods: {
+    nextBlock() {
+      const nextElem = this.$refs.cover.nextElementSibling;
+      nextElem.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+        inline: 'center',
+      })
+    }
+  }
 };
 </script>
 
@@ -44,6 +59,7 @@ export default {
 }
 
 .cover__button {
+  background-color: transparent;
   background-image: url('../assets/images/cover-button.svg');
   background-position: center;
   background-size: cover;
@@ -55,6 +71,8 @@ export default {
   cursor: pointer;
   z-index: 1;
   margin-bottom: 40px;
+  border: none;
+  outline: none;
 }
 
 @media screen and (max-width: 1280px) {
