@@ -27,7 +27,7 @@
 ## Установка
 
 * Клонируйте этот репозиторий на свой локальный компьютер 
-`https://github.com/tim-musifullin/main-rl.git`
+`https://github.com/tim-musifullin/nko-raklechitsa.git`
 * Перед установкой убедиться, что находитесь в ветке *master*
 * Используйте `npm install` для установки зависимостей
 * Используйте `npm run dev` для запуска проекта локально
