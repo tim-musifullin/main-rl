@@ -1,20 +1,21 @@
 <template>
   <Container>
     <header class="header">
-      <h1 class="header__logo">
+      <nuxt-link to="/" v-if="$route.path !== '/'" class="header__logo-link">
+        <h1 class="header__logo">
+          Проект Благотворительного Фонда Константина Хабенского
+        </h1>
+      </nuxt-link>
+      <h1 class="header__logo" v-else>
         Проект Благотворительного Фонда Константина Хабенского
       </h1>
       <div class="header__navigation">
-        <Menu />
+        <Links />
         <button class="header__button" type="button" @click="showPopUp">
           Рассказать историю
         </button>
       </div>
     </header>
-    <overlay v-if="popupShown" @overlayClick="showPopUp" />
-    <pop-up v-if="popupShown" @closeClick="showPopUp" :theme="'dark'">
-      <question-form />
-    </pop-up>
   </Container>
 </template>
 
@@ -23,19 +24,14 @@ import Links from '@/components/ui/Links';
 import Container from '@/components/Container';
 import Overlay from '@/components/ui/Overlay';
 import PopUp from '@/components/PopUp';
-import QuestionForm from '@/components/QuestionForm';
+import Quiz from '@/components/ui/Quiz';
 export default {
   components: {
-    Menu: Links,
+    Links,
     Container,
-    overlay: Overlay,
-    'pop-up': PopUp,
-    'question-form': QuestionForm,
-  },
-  computed: {
-    popupShown() {
-      return this.$store.getters['popup/getPopupShown'];
-    },
+    Overlay,
+    PopUp,
+    Quiz,
   },
   methods: {
     showPopUp() {
@@ -60,6 +56,9 @@ export default {
   line-height: 20px;
   color: #121212;
   padding: 18px 0;
+}
+.header__logo-link {
+  text-decoration: none;
 }
 
 .header__menu-links {

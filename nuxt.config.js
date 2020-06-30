@@ -3,6 +3,13 @@ export default {
   /*
    ** Headers of the page
    */
+  router: {
+    middleware: 'basicData',
+  },
+  env: {
+    BASE_URL: 'https://strapi.kruzhok.io',
+    INSTA_URL: 'https://www.instagram.com/raklechitsa/?__a=1',
+  },
   head: {
     title: process.env.npm_package_name || '',
     meta: [

@@ -7,14 +7,18 @@
 
       <div class="stories__section">
         <Card
-          v-for="card in Cards"
+          v-for="card in stories"
           :key="card.id"
-          :name="card.name"
-          :quote="card.quote"
+          :name="card.author"
+          :quote="card.title"
+          :link="`/stories/${card.id}`"
+          :photo="`background-image:url('https://strapi.kruzhok.io${card.ImageUrl[0].url}')`"
         />
       </div>
 
-      <button class="stories__button">Больше статей</button>
+      <nuxt-link to="/stories" class="stories__button">
+        Больше статей
+      </nuxt-link>
     </section>
   </Container>
 </template>
@@ -24,14 +28,21 @@ import Title from '@/components/ui/Title';
 import Card from '@/components/ui/Card';
 import Container from '@/components/Container';
 export default {
+  data() {
+    return {
+      storiesName: '',
+      itemsPerPage: 8,
+      startIndex: 0
+    }
+  },
   components: {
     Card,
     Title,
     Container,
   },
   computed: {
-    Cards() {
-      return this.$store.getters['stories/getStories'];
+    stories() {
+      return this.$store.getters['stories/getStoriesForPage'].filter((item, idx) => idx >= this.startIndex && idx <= (this.startIndex + this.itemsPerPage - 1));
     },
   },
 };
@@ -57,6 +68,7 @@ export default {
 
 .stories__button {
   background-color: #fbfbfb;
+  color: #000;
   border: none;
   width: 100%;
   padding: 31px 0;
@@ -67,5 +79,6 @@ export default {
   line-height: 20px;
   display: flex;
   justify-content: center;
+  text-decoration: none;
 }
 </style>

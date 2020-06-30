@@ -1,7 +1,9 @@
 <template>
   <button
-    :class="['button', `button_theme_${theme}`]"
-    @click="btnClick"
+    :class="['button', `button_theme_${theme}`, { button_disabled: disabled }]"
+    @click="$emit('btnClick')"
+    :disabled="disabled"
+    :type="buttonType"
   >
     <slot></slot>
   </button>
@@ -9,19 +11,18 @@
 
 <script>
 export default {
-  props: ['theme'],
-  methods: {
-    btnClick(e) {
-      e.preventDefault()
-      this.$emit('click')
-    }
-  }
+  props: {
+    theme: {type: String, default: 'purple'},
+    buttonType: { type: String, required: true},
+    disabled: Boolean,
+  },
 };
 </script>
 
 <style scoped>
 .button {
   border: none;
+  outline: none;
   max-width: 226px;
   width: 100%;
   height: 52px;

@@ -2,24 +2,35 @@
   <section class="history">
     <Container>
       <Title>
-        Расскажите свою историю
+        {{getBlock.title}}
       </Title>
 
       <div class="history__container">
-        <Description class="history__description_left">
-          Мы публикуем новые истории на сайте раз в неделю. Есть 2 варианта
-          поделиться своей историей неизлечимых привычек, навязчивых идей и
-          болезненных привязанностей.
+
+        <Description class="history__description history__description_left">
+          <div class="history_paragraph" v-html="getBlock.text"></div>
+
+          <div class="history__switch">
+            <button
+                v-for="item in getBlock.extraTexts"
+                currentTab="item"
+                v-bind:key="item.id"
+                v-bind:class="[
+                  'history__click',
+                  { 'history__click_active': currentTab.id === item.id },
+                ]"
+                v-on:click="currentTab = item"
+              >
+                {{ item.title }}
+              </button>
+          </div>
         </Description>
-        <div class="history__switch">
-          <span class="history__click history__click_active">1-й вариант</span>
-          <span class="history__click">2-й вариант</span>
-        </div>
-        <Description class="history__description_right">
-          Заполнить подробную форму прямо на сайте и мы опубликуем вашу историю
-          после проверки. Пожалуйста, заполняйте все пункты корректно, если вы
-          испытаете какие-то сложности, воспользуйтесь 2-м вариантом.
-          <VioletButton class="history__button">Заполнить форму</VioletButton>
+
+        <Description class="history__description history__description_right">
+        <div class="history__info" v-html="currentTab.text"></div>
+        <VioletButton class="history__button">
+          {{ currentTab.id == 1 ? 'Заполнить форму' : 'Отправить' }}
+        </VioletButton>
         </Description>
       </div>
     </Container>
@@ -37,6 +48,18 @@ export default {
     Description,
     VioletButton,
     Container,
+  },
+  data() {
+    return {
+      currentTab: this.$store.state.blocks.blocks.find(
+        el => el.block === 'story'
+      ).extraTexts[0],
+    };
+  },
+  computed: {
+    getBlock() {
+      return this.$store.state.blocks.blocks.find(el => el.block === 'story');
+    },
   },
 };
 </script>
@@ -58,37 +81,60 @@ export default {
   padding-top: 32px;
 }
 
-.history__description_left {
+.history_paragraph {
   max-width: 340px;
+}
+.history__description {
+  width: 100%;
+  display: flex;
+}
+
+.history__description_left {
+  justify-content: space-between;
 }
 
 .history__description_right {
-  max-width: 640px;
   margin-left: 40px;
-  display: flex;
   flex-direction: column;
 }
 
 .history__switch {
   display: flex;
   flex-direction: column;
-  margin-left: 192px;
 }
 
 .history__click {
   font-family: Inter;
   font-style: normal;
+  font-weight: 500;
   font-size: 18px;
-  line-height: 122%;
+  line-height: 22px;
+  text-align: right;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  text-align: left;
+  background: #f7f7f7;
+  color: #A2A2A2;
+}
+
+.history__click:first-child {
   padding-bottom: 10px;
-  color: #a2a2a2;
+}
+
+.history__click:hover {
+  font-weight: 500;
+  color: #000;
 }
 
 .history__click_active {
-  color: #000000;
+  color: #000;
   font-weight: 500;
 }
 
+.history__info {
+  height: 5.5rem;
+}
 .history__button {
   margin-top: 95px;
 }

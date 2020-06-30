@@ -1,17 +1,28 @@
 <template>
   <div class="statistics__items">
-    <StaticCard />
-    <StaticCard />
-    <StaticCard />
-    <StaticCard />
+    <StatisticsCard
+      v-for="card in statistics"
+      :key="card.id"
+      :text="card.description"
+      :numbers="card.summary"
+      :source="card.source"
+      :value="card.currentValue"
+      :maxValue="card.maxValue"
+      :serial="card.id"
+    />
   </div>
 </template>
 
 <script>
-import StaticCard from '@/components/ui/StaticCard';
+import StatisticsCard from '@/components/ui/StatisticsCard';
 export default {
   components: {
-    StaticCard,
+    StatisticsCard,
+  },
+  computed : {
+    statistics() {
+      return this.$store.getters['statistics/getStatistics'];
+    }
   },
 };
 </script>
