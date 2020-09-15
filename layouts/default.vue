@@ -5,7 +5,7 @@
     <Footer />
     <Overlay v-if="popupShown" @overlayClick="showPopUp" />
     <PopUp v-if="popupShown" @closeClick="showPopUp" :theme="'dark'">
-      <Quiz v-if="openQuestions"/>
+      <Quiz v-if="openQuestions" />
     </PopUp>
   </div>
 </template>
@@ -22,7 +22,7 @@ export default {
     Footer,
     Overlay,
     PopUp,
-    Quiz
+    Quiz,
   },
   computed: {
     popupShown() {
@@ -34,8 +34,8 @@ export default {
       this.$store.commit('popup/togglePopUp');
     },
     openQuestions() {
-      this.$store.getters('popup/openQuestions')
-    }
+      this.$store.getters('popup/openQuestions');
+    },
   },
 };
 </script>

@@ -5,10 +5,10 @@
         <span></span>
         <Hashtag class="cover__title">#РАКЛЕЧИТСЯ</Hashtag>
         <button
-        class="cover__button"
-        type="button"
-        @click="nextBlock"
-        title="Далее"
+          class="cover__button"
+          type="button"
+          @click="nextBlock"
+          title="Далее"
         ></button>
       </div>
     </Container>
@@ -30,9 +30,9 @@ export default {
         behavior: 'smooth',
         block: 'start',
         inline: 'center',
-      })
-    }
-  }
+      });
+    },
+  },
 };
 </script>
 

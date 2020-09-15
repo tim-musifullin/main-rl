@@ -12,7 +12,7 @@
         }}
       </h3>
       <p class="question-form__question">
-        {{!isLastForm ? currentQuestion.question : '' }}
+        {{ !isLastForm ? currentQuestion.question : '' }}
         <span v-if="!isLastForm" class="question-form__question-detail">{{
           currentQuestion.subQuestion || ''
         }}</span>
@@ -32,7 +32,7 @@
         theme="white"
         buttonType="button"
         @btnClick="prevQuestion"
-      >Назад
+        >Назад
       </Button>
       <Button
         v-if="!isLastForm"
@@ -48,7 +48,7 @@
         theme="purple"
         buttonType="button"
         @btnClick="nextQuestionClose"
-      >Закрыть
+        >Закрыть
       </Button>
       <PolicyLink :class="[{ 'question-form_none': isLastQuestion == true }]" />
     </div>

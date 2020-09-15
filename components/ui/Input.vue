@@ -1,15 +1,18 @@
 <template>
-    <input
-      :class="['input',
-        className, {
+  <input
+    :class="[
+      'input',
+      className,
+      {
         'input_bottom-bordered': bottomBordered,
         input_disabled: disabled,
-      }]"
-      :type="inputType"
-      :placeholder="inputPlaceholder"
-      @input="handleInput"
-      v-model="content"
-    />
+      },
+    ]"
+    :type="inputType"
+    :placeholder="inputPlaceholder"
+    @input="handleInput"
+    v-model="content"
+  />
 </template>
 
 <script>
@@ -24,8 +27,8 @@ export default {
   },
   data() {
     return {
-      content: this.value
-    }
+      content: this.value,
+    };
   },
   watch: {
     value(newVal) {
@@ -61,6 +64,6 @@ export default {
   padding-left: 10px;
 }
 .input:focus {
-  outline: 2px solid #613A93;
+  outline: 2px solid #613a93;
 }
 </style>

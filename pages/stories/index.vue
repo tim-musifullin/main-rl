@@ -2,13 +2,8 @@
   <Container>
     <Title class="title">Истории неизлечимых привычек</Title>
     <form class="stories__search">
-      <Input
-        type="text"
-        name="search"
-        className="stories__input" />
-      <Button
-        theme="purple"
-        class="stories__button">
+      <Input type="text" name="search" className="stories__input" />
+      <Button theme="purple" class="stories__button">
         Искать
       </Button>
     </form>
@@ -26,9 +21,9 @@
     </div>
     <Pagination
       class="stories__pagination"
-      :totalItems='this.$store.state.stories.storiesPage.length'
-      :itemsPerPage='itemsPerPage'
-      @onPageChanged='changeStartIndex '
+      :totalItems="this.$store.state.stories.storiesPage.length"
+      :itemsPerPage="itemsPerPage"
+      @onPageChanged="changeStartIndex"
     />
   </Container>
 </template>
@@ -47,7 +42,7 @@ export default {
       itemsPerPage: 16,
       startIndex: 0,
       BASE_URL: process.env.BASE_URL,
-    }
+    };
   },
   components: {
     Container,
@@ -55,25 +50,28 @@ export default {
     Button,
     Card,
     Pagination,
-    Input
+    Input,
   },
   computed: {
     stories() {
-      return this.$store.getters['stories/getStoriesForPage'].filter((item, idx) => idx >= this.startIndex && idx <= (this.startIndex + this.itemsPerPage - 1));
+      return this.$store.getters['stories/getStoriesForPage'].filter(
+        (item, idx) =>
+          idx >= this.startIndex &&
+          idx <= this.startIndex + this.itemsPerPage - 1
+      );
     },
   },
   methods: {
-    changeStartIndex (index) {
+    changeStartIndex(index) {
       this.startIndex = (index - 1) * this.itemsPerPage;
     },
     goToFull(id) {
       this.$router.push(`/stories/${id}`);
-    }
+    },
   },
   async fetch({ store }) {
     await store.dispatch('stories/fetchStories');
-  }
-
+  },
 };
 </script>
 
@@ -86,7 +84,6 @@ export default {
   display: flex;
   margin-bottom: 70px;
 }
-
 
 .stories__button {
   margin-left: 20px;

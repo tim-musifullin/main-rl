@@ -6,13 +6,13 @@
 </template>
 
 <script>
-  export default {
-    props: {
-      styleDef: {type: String, default: '#fff'},
-      styleMain: String,
-      styleAdd: String,
-    }
-  }
+export default {
+  props: {
+    styleDef: { type: String, default: '#fff' },
+    styleMain: String,
+    styleAdd: String,
+  },
+};
 </script>
 
 <style scoped>

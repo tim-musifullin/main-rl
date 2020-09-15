@@ -2,35 +2,34 @@
   <section class="history">
     <Container>
       <Title>
-        {{getBlock.title}}
+        {{ getBlock.title }}
       </Title>
 
       <div class="history__container">
-
         <Description class="history__description history__description_left">
           <div class="history_paragraph" v-html="getBlock.text"></div>
 
           <div class="history__switch">
             <button
-                v-for="item in getBlock.extraTexts"
-                currentTab="item"
-                v-bind:key="item.id"
-                v-bind:class="[
-                  'history__click',
-                  { 'history__click_active': currentTab.id === item.id },
-                ]"
-                v-on:click="currentTab = item"
-              >
-                {{ item.title }}
-              </button>
+              v-for="item in getBlock.extraTexts"
+              currentTab="item"
+              v-bind:key="item.id"
+              v-bind:class="[
+                'history__click',
+                { history__click_active: currentTab.id === item.id },
+              ]"
+              v-on:click="currentTab = item"
+            >
+              {{ item.title }}
+            </button>
           </div>
         </Description>
 
         <Description class="history__description history__description_right">
-        <div class="history__info" v-html="currentTab.text"></div>
-        <VioletButton class="history__button">
-          {{ currentTab.id == 1 ? 'Заполнить форму' : 'Отправить' }}
-        </VioletButton>
+          <div class="history__info" v-html="currentTab.text"></div>
+          <VioletButton class="history__button">
+            {{ currentTab.id == 1 ? 'Заполнить форму' : 'Отправить' }}
+          </VioletButton>
         </Description>
       </div>
     </Container>
@@ -115,7 +114,7 @@ export default {
   cursor: pointer;
   text-align: left;
   background: #f7f7f7;
-  color: #A2A2A2;
+  color: #a2a2a2;
 }
 
 .history__click:first-child {

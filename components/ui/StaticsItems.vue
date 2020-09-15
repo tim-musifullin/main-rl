@@ -19,10 +19,10 @@ export default {
   components: {
     StatisticsCard,
   },
-  computed : {
+  computed: {
     statistics() {
       return this.$store.getters['statistics/getStatistics'];
-    }
+    },
   },
 };
 </script>

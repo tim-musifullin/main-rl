@@ -6,9 +6,9 @@ export const state = () => ({
 });
 
 export const mutations = {
-  setState(state, { name,value }) {
+  setState(state, { name, value }) {
     return (state[name] = value);
-  }
+  },
 };
 
 export const getters = {
@@ -17,7 +17,7 @@ export const getters = {
   },
   getCurrentStories(state) {
     return state.currentStories;
-  }
+  },
 };
 
 export const actions = {
@@ -26,8 +26,8 @@ export const actions = {
       return state.commit('setState', {
         name: 'storiesPage',
         value: response.data,
-      })
-    })
+      });
+    });
   },
 
   fetchStoriesWithId(state, payload) {
@@ -36,8 +36,8 @@ export const actions = {
       .then(response => {
         return state.commit('setState', {
           name: 'currentStories',
-          value: response.data
-        })
-      })
-  }
-}
+          value: response.data,
+        });
+      });
+  },
+};

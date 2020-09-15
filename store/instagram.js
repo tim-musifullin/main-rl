@@ -1,13 +1,13 @@
 import axios from 'axios';
 
 export const state = () => ({
-  photos: []
+  photos: [],
 });
 
 export const mutations = {
-  setState(state, { name,value }) {
+  setState(state, { name, value }) {
     return (state[name] = value);
-  }
+  },
 };
 
 export const getters = {
@@ -19,22 +19,24 @@ export const getters = {
 export const actions = {
   fetchPhotos(state) {
     return axios.get(`${process.env.INSTA_URL}`).then(response => {
-      const finallyData = getPosts(response.data)
+      const finallyData = getPosts(response.data);
       return state.commit('setState', {
         name: 'photos',
         value: finallyData,
-      })
-    })
+      });
+    });
   },
-}
+};
 
 const getPosts = data => {
   return data.graphql.user.edge_owner_to_timeline_media.edges.map(post => {
-    const { node: { display_url, accessibility_caption, shortcode } } = post
+    const {
+      node: { display_url, accessibility_caption, shortcode },
+    } = post;
     return {
       display_url,
       accessibility_caption,
-      url: `https://www.instagram.com/p/${shortcode}`
-    }
-  })
-}
+      url: `https://www.instagram.com/p/${shortcode}`,
+    };
+  });
+};

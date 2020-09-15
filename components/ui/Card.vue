@@ -1,6 +1,6 @@
 <template>
   <a :href="link" class="card" @click="$emit('cardClick')">
-    <div class="card__image" :style='photo'></div>
+    <div class="card__image" :style="photo"></div>
     <h3 class="card__title">{{ name }}</h3>
     <p class="card__description">{{ quote }}</p>
   </a>
@@ -9,10 +9,10 @@
 <script>
 export default {
   props: {
-    name: { type: String, required: true},
-    quote: { type: String, required: true},
-    link: { type: String, required: true},
-    photo: { type: String, required: true},
+    name: { type: String, required: true },
+    quote: { type: String, required: true },
+    link: { type: String, required: true },
+    photo: { type: String, required: true },
   },
 };
 </script>

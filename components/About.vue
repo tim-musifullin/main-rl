@@ -2,15 +2,14 @@
   <section class="about">
     <Container>
       <h2 class="about__header">
-        <Hashtag class="about__hashtag">{{getBlock.hashtag}}</Hashtag>
+        <Hashtag class="about__hashtag">{{ getBlock.hashtag }}</Hashtag>
       </h2>
       <Title class="about__title">
-        {{getBlock.title}}
+        {{ getBlock.title }}
       </Title>
       <div class="about__container">
         <Description class="about__description_left">
-          <div class="about__paragraph" v-html="getBlock.text">
-          </div>
+          <div class="about__paragraph" v-html="getBlock.text"></div>
           <div class="about__switch">
             <button
               v-for="item in getBlock.extraTexts"
@@ -18,11 +17,13 @@
               v-bind:key="item.id"
               v-bind:class="[
                 'about__click',
-                { 'about__click_active': currentTab.id === item.id },]"
-              v-on:click="currentTab = item">
+                { about__click_active: currentTab.id === item.id },
+              ]"
+              v-on:click="currentTab = item"
+            >
               {{ item.title }}
             </button>
-            </div>
+          </div>
         </Description>
         <Description class="about__description_right">
           <div class="about__info" v-html="currentTab.text"></div>
@@ -44,7 +45,7 @@ export default {
     Title,
     Description,
     Container,
-    Button
+    Button,
   },
   data() {
     return {
@@ -125,7 +126,7 @@ export default {
   cursor: pointer;
   text-align: left;
   background: #613a93;
-  color: #C9C9C9;
+  color: #c9c9c9;
 }
 
 .about__click:first-child {

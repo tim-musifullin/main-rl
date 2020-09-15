@@ -12,7 +12,9 @@
           :name="card.author"
           :quote="card.title"
           :link="`/stories/${card.id}`"
-          :photo="`background-image:url('https://strapi.kruzhok.io${card.ImageUrl[0].url}')`"
+          :photo="
+            `background-image:url('https://strapi.kruzhok.io${card.ImageUrl[0].url}')`
+          "
         />
       </div>
 
@@ -32,8 +34,8 @@ export default {
     return {
       storiesName: '',
       itemsPerPage: 8,
-      startIndex: 0
-    }
+      startIndex: 0,
+    };
   },
   components: {
     Card,
@@ -42,7 +44,11 @@ export default {
   },
   computed: {
     stories() {
-      return this.$store.getters['stories/getStoriesForPage'].filter((item, idx) => idx >= this.startIndex && idx <= (this.startIndex + this.itemsPerPage - 1));
+      return this.$store.getters['stories/getStoriesForPage'].filter(
+        (item, idx) =>
+          idx >= this.startIndex &&
+          idx <= this.startIndex + this.itemsPerPage - 1
+      );
     },
   },
 };

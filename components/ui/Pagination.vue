@@ -7,11 +7,11 @@
       :class="[
         'pagination__item',
         {
-          'pagination__item_active': index === active,
+          pagination__item_active: index === active,
         },
       ]"
     >
-      {{index}}
+      {{ index }}
     </div>
   </div>
 </template>
@@ -21,12 +21,12 @@ export default {
   props: {
     totalItems: {
       type: Number,
-      default: 0
+      default: 0,
     },
     itemsPerPage: {
       type: Number,
-      default: 0
-    }
+      default: 0,
+    },
   },
   data() {
     return {
@@ -35,13 +35,13 @@ export default {
   },
   computed: {
     pagesCount() {
-      return Math.ceil(this.totalItems / this.itemsPerPage)
+      return Math.ceil(this.totalItems / this.itemsPerPage);
     },
   },
   methods: {
     setActive(index) {
-      this.active = index
-      this.$emit('onPageChanged', index)
+      this.active = index;
+      this.$emit('onPageChanged', index);
     },
   },
 };
@@ -73,6 +73,6 @@ export default {
 
 .pagination__item_active,
 .pagination__item:hover {
-  background: #F4F4F4;
+  background: #f4f4f4;
 }
 </style>

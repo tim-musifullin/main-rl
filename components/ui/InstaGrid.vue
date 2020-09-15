@@ -13,20 +13,24 @@
 import InstaCard from '@/components/ui/InstaCard';
 export default {
   components: {
-    InstaCard
+    InstaCard,
   },
   data() {
     return {
       storiesName: '',
       itemsPerPage: 8,
-      startIndex: 0
-    }
+      startIndex: 0,
+    };
   },
   computed: {
-    instagram () {
-        const { instagram } = this.$store.state
-        return instagram.photos.filter((item, idx) => idx >= this.startIndex && idx <= (this.startIndex + this.itemsPerPage - 1))
-      }
+    instagram() {
+      const { instagram } = this.$store.state;
+      return instagram.photos.filter(
+        (item, idx) =>
+          idx >= this.startIndex &&
+          idx <= this.startIndex + this.itemsPerPage - 1
+      );
+    },
   },
 };
 </script>

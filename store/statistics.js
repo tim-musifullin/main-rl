@@ -5,9 +5,9 @@ export const state = () => ({
 });
 
 export const mutations = {
-  setState(state, { name, value}) {
+  setState(state, { name, value }) {
     return (state[name] = value);
-  }
+  },
 };
 
 export const getters = {
@@ -23,6 +23,6 @@ export const actions = {
         name: 'statistics',
         value: response.data,
       });
-    })
-  }
+    });
+  },
 };

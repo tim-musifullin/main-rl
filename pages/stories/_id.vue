@@ -1,11 +1,16 @@
 <template>
   <Container class="story">
     <div class="story__header">
-      <div class="story__image" :style="`background-image:url('${BASE_URL}${stories.ImageUrl[0].url}')`"></div>
+      <div
+        class="story__image"
+        :style="`background-image:url('${BASE_URL}${stories.ImageUrl[0].url}')`"
+      ></div>
       <div class="story__headline">
         <h2 class="story__title">
-          <span class="story__title story__title_bold">{{stories.author}}:</span>
-          {{stories.title}}
+          <span class="story__title story__title_bold"
+            >{{ stories.author }}:</span
+          >
+          {{ stories.title }}
         </h2>
         <div class="story__footer">
           <a href="" class="story__link">Поделитесь ↗</a>
@@ -13,9 +18,7 @@
         </div>
       </div>
     </div>
-    <div class="story__description" v-html="stories.text">
-
-    </div>
+    <div class="story__description" v-html="stories.text"></div>
 
     <a href="" class="story__link story__share">
       Поделитесь этой статьей в своих социальных сетях ↗
@@ -32,18 +35,18 @@
       />
     </div>
     <nuxt-link to="/stories" class="story__button">
-        Больше статей
-      </nuxt-link>
+      Больше статей
+    </nuxt-link>
   </Container>
 </template>
 
 <script>
-import Container from "@/components/Container";
-import Card from "@/components/ui/Card";
+import Container from '@/components/Container';
+import Card from '@/components/ui/Card';
 export default {
   components: {
     Container,
-    Card
+    Card,
   },
   async fetch({ store, route }) {
     await store.dispatch('stories/fetchStoriesWithId', { id: route.params.id });
@@ -53,7 +56,11 @@ export default {
       return this.$store.getters['stories/getCurrentStories'];
     },
     storiesAddition() {
-      return this.$store.getters['stories/getStoriesForPage'].filter((item, idx) => idx >= this.startIndex && idx <= (this.startIndex + this.itemsPerPage - 1));
+      return this.$store.getters['stories/getStoriesForPage'].filter(
+        (item, idx) =>
+          idx >= this.startIndex &&
+          idx <= this.startIndex + this.itemsPerPage - 1
+      );
     },
   },
   data() {
@@ -62,11 +69,11 @@ export default {
       itemsPerPage: 4,
       startIndex: Number(this.$route.params.id),
       BASE_URL: process.env.BASE_URL,
-    }
+    };
   },
   beforeMount() {
     this.$store.dispatch('stories/fetchStories');
-    console.log(this.$route.params.id)
+    console.log(this.$route.params.id);
   },
 };
 </script>

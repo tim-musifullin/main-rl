@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import ProgressBar from "@/components/ui/ProgressBar";
+import ProgressBar from '@/components/ui/ProgressBar';
 export default {
   components: {
     ProgressBar,
@@ -38,13 +38,13 @@ export default {
     source: String,
     value: Number,
     maxValue: Number,
-    serial: Number
+    serial: Number,
   },
   computed: {
     style() {
-      return `width: ${this.value / this.maxValue * 100}%; height: 50%; `
-    }
-  }
+      return `width: ${(this.value / this.maxValue) * 100}%; height: 50%; `;
+    },
+  },
 };
 </script>
 
